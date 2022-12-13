@@ -24,66 +24,47 @@
 <!--search page text-->
         <div class="games-text">
         <p><img src="images/clouds.png" alt="Logo"></p>
-            <p>Welcome to Search Page. Here you can view all free video games as cards and filter them by genre,
-                platform and release year. You can also search games by their titles.</p>
+            <p>Welcome to Search Page. Here you can view all free video games as cards and filter them by genre and
+                platform. You can also search games by their titles.</p>
         </div>
 
 <!--search panel-->
 <div class="d-flex p-1 m-1" id="search-panel"></div>
+<dıv class="d-flex" id="dropdown-texts">
+    <p class="text-justify" id="genre-text">Genre:</p>
+    <p class="text-justify" id="platform-text">Platform:</p>
+    </div>
     <div class="d-flex p-1 m-4" id="dropdowns-and-search-box">
     
     <!--filter by genre-->
         <div class="dropdown-genre">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Genre
-            </button>
-            <div class="dropdown-menu" id="dropdown-menu-genre" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">All</a>
-                    <a class="dropdown-item" href="#">Shooter</a>
-                    <a class="dropdown-item" href="#">MMOARPG</a>
-                    <a class="dropdown-item" href="#">Action RPG</a>
-                    <a class="dropdown-item" href="#">Strategy</a>
-                    <a class="dropdown-item" href="#">MMORPG</a>
-                    <a class="dropdown-item" href="#">Fighting</a>
-                    <a class="dropdown-item" href="#">Battle Royale</a>
-                    <a class="dropdown-item" href="#">MOBA</a>
-                    <a class="dropdown-item" href="#">Card Game</a>
-                    <a class="dropdown-item" href="#">Sports</a>
-                    <a class="dropdown-item" href="#">MMOFPS</a>
-                    <a class="dropdown-item" href="#">Moba</a>
-                    <a class="dropdown-item" href="#">MMO</a>
-                    <a class="dropdown-item" href="#">Racing</a>
-                    <a class="dropdown-item" href="#">Social</a>
-            </div>
+            <select class="form-select" id="genre-select" aria-labelledby="dropdownMenuButton">
+                    <option value="All">All</option>
+                    <option value="Shooter">Shooter</option>
+                    <option value="MMOARPG">MMOARPG</option>
+                    <option value="Action RPG">Action RPG</option>
+                    <option value="Strategy">Strategy</option>
+                    <option value="MMORPG">MMORPG</option>
+                    <option value="Fighting">Fighting</option>    
+                    <option value="Battle Royale">Battle Royale</option>
+                    <option value="MOBA">MOBA</option>
+                    <option value="Card Game">Card Game</option>
+                    <option value="Sports">Sports</option>
+                    <option value="MMOFPS">MMOFPS</option>
+                    <option value="MMO">MMO</option>
+                    <option value="Racing">Racing</option>
+                    <option value="Social">Social</option>
+            </select>
         </div>
     
     <!--filter by platform-->
         <div class="dropdown-platform">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Platform
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">All</a>
-                <a class="dropdown-item" href="#">PC (Windows)</a>
-                <a class="dropdown-item" href="#">Web Browser</a>
-                <a class="dropdown-item" href="#">Both</a>
-            </div>
-        </div>
-    
-    <!--filter by release date-->
-        <div class="dropdown-period">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Period
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">All</a>
-                <a class="dropdown-item" href="#">Before 2010</a>
-                <a class="dropdown-item" href="#">2010-2019</a>
-                <a class="dropdown-item" href="#">2020-Today</a>
-            </div>
+            <select class="form-select" id="platform-select" aria-labelledby="dropdownMenuButton">
+                    <option value="All">All</option>
+                    <option value="PC (Windows)">PC (Windows)</option>
+                    <option value="Web Browser">Web Browser</option>
+                    <option value="PC (Windows), Web Browser">Both</option>
+            </select>
         </div>
     
     <!--search box-->
@@ -97,7 +78,7 @@
         <button type="button" class="btn btn-success" id="run-button" onclick="SearchTitle()">Run</button>
     </div>
         <div class="d-flex p-1 m-4" id="reset">
-            <button type="button" class="btn btn-danger" id="reset-button">Reset</button>
+            <button type="button" class="btn btn-dark" id="reset-button">Reset</button>
         </div>
         
 

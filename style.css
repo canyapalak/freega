@@ -181,11 +181,11 @@ footer a {
 
 /* card styling */
 .card:nth-child(odd) {
-background: #ced5d5 !important;
+background: #e7d6cf !important;
 }
 
 .card:nth-child(even) {
-    background-color: #ded2a5 !important
+    background-color: #d6d4dd !important
 }
 
 .card {
@@ -217,4 +217,23 @@ background: #ced5d5 !important;
 
 #reset-button {
     margin-top:-2em !important;
+}
+
+
+#dropdown-texts {
+    margin-bottom: -2em !important;
+    margin-left: 2em !important;
+    font-weight: bold !important;
+    font-size:large !important;
+}
+
+#platform-text {
+    margin-left: 5rem !important;
+
+}
+
+@media (max-width: 50em) {
+    #platform-text {
+            margin-left: 1rem !important;
+    }
 }
