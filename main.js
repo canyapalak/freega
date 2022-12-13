@@ -71,7 +71,7 @@ for (let i = 0; i < allGames.length; i++) {
     releaseDate.innerText = "Release: " + newDate;
 
     const platform = document.createElement("p");
-    platform.innerText = "Platform to Play:  ";
+    platform.innerText = "Platform to Play: ";
     platform.classList.add("card-title-4");
 
     if (allGames[i].platform === "PC (Windows)") {
@@ -119,10 +119,19 @@ for (let i = 0; i < allGames.length; i++) {
 }
 }
 
+//RESET FILTERS AND SHOW ALL CARDS (It shows all cards but dropdowns and search input don't reset)
 
-//RESET FILTERS AND SHOW ALL CARDS (doesn't work!)
+document.getElementById("reset-button").addEventListener("click", resetCards);
 
-document.getElementById("reset-button").addEventListener("click", createCards(allGames));
+function resetCards() {
+    createCards(allGames);
+    const selectGenre1 = document.getElementById("genre-select")
+    selectGenre1.selectedIndex = 0;
+    const selectPlatform1 = document.getElementById("platform-select")
+    selectPlatform1.selectedIndex = 0;
+    const searchInput1 = document.getElementById("type-title")
+    searchInput1.value = ""
+}
 
 // EVENTS - GENRE
 function createGenreEvent(allGames) {
@@ -140,7 +149,7 @@ function createGenreEvent(allGames) {
 function filterGenre(eventGenre, allGames) {
     
     const genreSelect = eventGenre.target.value
-    console.log('genreSelect :>> ', genreSelect);
+    // console.log('genreSelect :>> ', genreSelect);
     let filteredGamesbyGenre = []
     if (genreSelect.toLowerCase() === "all") {
        filteredGamesbyGenre = allGames
@@ -183,7 +192,7 @@ createPlatformEvent(allGames)
 function filterPlatform(eventPlatform, allGames) {
     
     const platformSelect = eventPlatform.target.value
-    console.log('platformSelect :>> ', platformSelect);
+    // console.log('platformSelect :>> ', platformSelect);
         let filteredGamesbyPlatform = []
     if (platformSelect.toLowerCase() === "all") {
        filteredGamesbyPlatform = allGames
@@ -197,7 +206,6 @@ function filterPlatform(eventPlatform, allGames) {
         }
     }
 
-
     createCards(filteredGamesbyPlatform)
 
 }
@@ -206,33 +214,38 @@ function filterPlatform(eventPlatform, allGames) {
 
 createCards(allGames)
 
+//SEARCH BOX FUNCTION (doesn't work!)
 
-//SEARCH BOX FUNCTION
-
-
-function searchGames(allGames) {
-    const searchedTitle = []
+function searchTitle() {
     const searchInput = document.getElementById("type-title")
+    const noGames = document.getElementById("no-games-found")
+    console.log('searchInput :>> ', searchInput);
     for (let i = 0; i < allGames.length; i++) {
         const titles = [];
         titles.push(allGames[i].title);
+        showSearchedGame = []
         console.log('titles :>> ', titles);
         for (let i = 0; i < titles.length; i++) {
-            if (searchInput.toLowerCase() === searchedTitle.toLowerCase()) {
-                showSearchedGame = allGames
-
+            if (searchInput === titles[i]) {
+                showSearchedGame.push(titles[i]);
+                showSearchedGame = allGames;
             } else {
-                document.body.innerText = "No games found!";
+                noGames.innerText = "No games found!";
             }
         }
         
     }
-createCards(showSearchedGame)
+createCards(allGames)
 }
 
+searchTitle(allGames)
 
-const searchInput1 = document.getElementById("type-title")
-if (searchInput1 === "empty") {
-    document.body.innerText = "No games found!";
-        
-    }
+function searchEvent(allGames) {
+    const runButton = document.getElementById("run-button")
+    
+    runButton.addEventListener(function (searchEvent) {
+        filterGenre(eventGenre, allGames)
+    })
+}
+
+ searchEvent(allGames, showSearchedGame)

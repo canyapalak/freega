@@ -181,15 +181,16 @@ footer a {
 
 /* card styling */
 .card:nth-child(odd) {
-background: #e7d6cf !important;
+background: #e8d3c9 !important;
 }
 
 .card:nth-child(even) {
-    background-color: #d6d4dd !important
+    background-color: #d3cfe1 !important
 }
 
 .card {
     padding: 0rem !important;
+    overflow: hidden !important;
 }
 
 .card-title {
@@ -203,6 +204,20 @@ background: #e7d6cf !important;
 .btn {
     display: block !important;
     text-align: center !important;
+}
+
+
+.card-title-4 img {
+    margin-right: 0.5em !important;
+}
+
+.card-img-top:hover {
+    transition: 0.5s;
+    filter: none;
+}
+
+.card-img-top {
+filter:sepia(70%);
 }
 
 /* search panel */
@@ -236,4 +251,10 @@ background: #e7d6cf !important;
     #platform-text {
             margin-left: 1rem !important;
     }
+}
+
+#no-games-found {
+    margin-left: 2em;
+font-weight: bold;
+    font-size: large;
 }
