@@ -71,8 +71,29 @@ for (let i = 0; i < allGames.length; i++) {
     releaseDate.innerText = "Release: " + newDate;
 
     const platform = document.createElement("p");
-    platform.innerText = "Platform: " + allGames[i].platform;
+    platform.innerText = "Platform to Play:  ";
     platform.classList.add("card-title-4");
+
+    if (allGames[i].platform === "PC (Windows)") {
+    let imgWindows = document.createElement("img");
+        imgWindows.src = "images/windows.png";
+        platform.appendChild(imgWindows);
+    }
+
+        if (allGames[i].platform === "Web Browser") {
+    let imgBrowser = document.createElement("img");
+        imgBrowser.src = "images/browser.png";
+        platform.appendChild(imgBrowser);
+        }
+    
+    if (allGames[i].platform === "PC (Windows), Web Browser") {
+    let imgWindows = document.createElement("img");
+        imgWindows.src = "images/windows.png";
+        let imgBrowser = document.createElement("img");
+        imgBrowser.src = "images/browser.png";
+        platform.appendChild(imgWindows);
+        platform.appendChild(imgBrowser);
+    }
 
     const cardFooter = document.createElement("div");
     cardFooter.classList.add("card-footer");
@@ -101,7 +122,7 @@ for (let i = 0; i < allGames.length; i++) {
 
 //RESET FILTERS AND SHOW ALL CARDS (doesn't work!)
 
-document.getElementById("reset-button").addEventListener("click", createCards);
+document.getElementById("reset-button").addEventListener("click", createCards(allGames));
 
 // EVENTS - GENRE
 function createGenreEvent(allGames) {
@@ -188,23 +209,30 @@ createCards(allGames)
 
 //SEARCH BOX FUNCTION
 
-//     const titles = []
-// for (let index = 0; index < allGames.length; index++) {
-//     titles.push(allGames[index].title)
-// }
 
-// console.log('titles :>> ', titles);
+function searchGames(allGames) {
+    const searchedTitle = []
+    const searchInput = document.getElementById("type-title")
+    for (let i = 0; i < allGames.length; i++) {
+        const titles = [];
+        titles.push(allGames[i].title);
+        console.log('titles :>> ', titles);
+        for (let i = 0; i < titles.length; i++) {
+            if (searchInput.toLowerCase() === searchedTitle.toLowerCase()) {
+                showSearchedGame = allGames
+
+            } else {
+                document.body.innerText = "No games found!";
+            }
+        }
         
-// function searchGames() {
-//     let input = document.getElementById('type-title').value
-//     input=input.toLowerCase();
-      
-//     for (i = 0; i < titles.length; i++) { 
-//         if (!card[i].innerHTML.toLowerCase().includes(input)) {
-//             card[i].style.display="none";
-//         }
+    }
+createCards(showSearchedGame)
+}
 
-//     }
-// }
 
-// searchGames ()
+const searchInput1 = document.getElementById("type-title")
+if (searchInput1 === "empty") {
+    document.body.innerText = "No games found!";
+        
+    }
