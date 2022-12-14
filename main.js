@@ -9,6 +9,7 @@
 // });
 
 
+
 //SHOW MORE-LESS BUTTON
 
 function showButton() {
@@ -119,7 +120,7 @@ for (let i = 0; i < allGames.length; i++) {
 }
 }
 
-//RESET FILTERS AND SHOW ALL CARDS (It shows all cards but dropdowns and search input don't reset)
+//RESET FILTERS AND SHOW ALL CARDS
 
 document.getElementById("reset-button").addEventListener("click", resetCards);
 
@@ -211,41 +212,16 @@ function filterPlatform(eventPlatform, allGames) {
 }
 
 //RUN CARD CREATION
-
 createCards(allGames)
+
 
 //SEARCH BOX FUNCTION (doesn't work!)
+  
+//events
 
-function searchTitle() {
-    const searchInput = document.getElementById("type-title")
-    const noGames = document.getElementById("no-games-found")
-    console.log('searchInput :>> ', searchInput);
-    for (let i = 0; i < allGames.length; i++) {
-        const titles = [];
-        titles.push(allGames[i].title);
-        showSearchedGame = []
-        console.log('titles :>> ', titles);
-        for (let i = 0; i < titles.length; i++) {
-            if (searchInput === titles[i]) {
-                showSearchedGame.push(titles[i]);
-                showSearchedGame = allGames;
-            } else {
-                noGames.innerText = "No games found!";
-            }
-        }
-        
-    }
-createCards(allGames)
-}
-
-searchTitle(allGames)
-
-function searchEvent(allGames) {
-    const runButton = document.getElementById("run-button")
-    
-    runButton.addEventListener(function (searchEvent) {
-        filterGenre(eventGenre, allGames)
-    })
-}
-
- searchEvent(allGames, showSearchedGame)
+    const runButton = document.getElementById("run-button");
+    runButton.addEventListener('click', function () {
+    const searchInput = document.getElementById("type-title");
+    const searchQuery = searchInput.value;
+    console.log('searchQuery :>> ', searchQuery);
+})
