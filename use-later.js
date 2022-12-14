@@ -39,3 +39,40 @@
 //     console.log('map2 :>> ', map2);
 // }
 
+
+
+
+
+// function searchTitle() {
+//     const searchInput = document.getElementById("type-title")
+//     const noGames = document.getElementById("no-games-found")
+//     console.log('searchInput :>> ', searchInput);
+//     for (let i = 0; i < allGames.length; i++) {
+//         const titles = [];
+//         titles.push(allGames[i].title);
+//         showSearchedGame = []
+//         console.log('titles :>> ', titles);
+//         for (let i = 0; i < titles.length; i++) {
+//             if (searchInput === titles[i]) {
+//                 showSearchedGame.push(titles[i]);
+//                 showSearchedGame = allGames;
+//             } else {
+//                 noGames.innerText = "No games found!";
+//             }
+//         }
+        
+//     }
+// createCards(allGames)
+// }
+
+// searchTitle(allGames)
+
+// function searchEvent(allGames) {
+//     const runButton = document.getElementById("run-button")
+    
+//     runButton.addEventListener(function (searchEvent) {
+//         filterGenre(eventGenre, allGames)
+//     })
+// }
+
+//  searchEvent(allGames, showSearchedGame)
