@@ -255,6 +255,6 @@ filter:sepia(70%);
 
 #no-games-found {
     margin-left: 2em;
-font-weight: bold;
+    font-weight: bold;
     font-size: large;
 }

@@ -10,19 +10,33 @@
 
 
 
-//SHOW MORE-LESS BUTTON
+// EVENTS CONTROLLER
+function addEvents(allGames) {
 
-function showButton() {
-    let moreText = document.getElementById("more-text");
-    let showMoreLessButton = document.getElementById("show-button");
-    if (moreText.style.display !== "inline") {
-        moreText.style.display = "inline";
-        showMoreLessButton.innerHTML = "Show Less";
-    } else {
-        moreText.style.display = "none";
-        showMoreLessButton.innerHTML = "Show More";
-    }      
+    // genre dropdown
+    const selectGenre = document.getElementById("genre-select")
+    selectGenre.addEventListener("change", function () {
+        filterGenre(allGames)
+    })
+    // platform dropdown
+    const selectPlatform = document.getElementById("platform-select")
+    selectPlatform.addEventListener("change", function () {
+        filterPlatform(allGames)
+    })
+    // search box
+    const runButton = document.getElementById("run-button");
+    runButton.addEventListener('click', function () {
+    const searchInput = document.getElementById("type-title");
+    const searchQuery = searchInput.value;
+    searchBar(searchQuery, allGames);
+    console.log('searchQuery :>> ', searchQuery);
+    })
+    // reset button
+    document.getElementById("reset-button").addEventListener("click", resetCards);
 }
+createCards(allGames)
+addEvents(allGames)
+
 
 // CARD CREATION
 function createCards(allGames) {
@@ -30,8 +44,7 @@ function createCards(allGames) {
     cardContainer.innerHTML = ""
 for (let i = 0; i < allGames.length; i++) {
 
-    // card components
-
+    // card component
    
     cardContainer.setAttribute("class", "flex-direction: row d-flex justify-content-around p-2");
 
@@ -106,7 +119,7 @@ for (let i = 0; i < allGames.length; i++) {
     link.setAttribute("target", "_blank");
     link.innerText = "More Information"; 
 
-//appending card components
+// appending card components
     card.appendChild(cardImage);
     cardBody.appendChild(title);
     cardBody.appendChild(genre);
@@ -120,9 +133,7 @@ for (let i = 0; i < allGames.length; i++) {
 }
 }
 
-//RESET FILTERS AND SHOW ALL CARDS
-
-document.getElementById("reset-button").addEventListener("click", resetCards);
+// RESET FILTERS AND SHOW ALL CARDS
 
 function resetCards() {
     createCards(allGames);
@@ -132,24 +143,13 @@ function resetCards() {
     selectPlatform1.selectedIndex = 0;
     const searchInput1 = document.getElementById("type-title")
     searchInput1.value = ""
+    const noGamesFound = document.getElementById("no-games-found")
+    noGamesFound.innerText = ""
 }
-
-// EVENTS - GENRE
-function createGenreEvent(allGames) {
-    const selectGenre = document.getElementById("genre-select")
+// FILTERING - GENRE
+function filterGenre(allGames) {
     
-    selectGenre.addEventListener("change", function (eventGenre) {
-        filterGenre(eventGenre, allGames)
-    })
-}
-
- createGenreEvent(allGames)
-
-//FILTERING - GENRE
-
-function filterGenre(eventGenre, allGames) {
-    
-    const genreSelect = eventGenre.target.value
+    const genreSelect = document.getElementById("genre-select").value
     // console.log('genreSelect :>> ', genreSelect);
     let filteredGamesbyGenre = []
     if (genreSelect.toLowerCase() === "all") {
@@ -163,11 +163,9 @@ function filterGenre(eventGenre, allGames) {
             }
         }
     }
-
-
     createCards(filteredGamesbyGenre)
 
-    //FILTERING WITH MODERN JS
+    // FILTERING WITH MODERN JS
 
     // const filteredGames = allGames.filter(function (game) {
         
@@ -176,23 +174,11 @@ function filterGenre(eventGenre, allGames) {
     // console.log('filteredGames :>> ', filteredGames);
 }
  
-//EVENTS - PLATFORM
+// FILTERING - PLATFORM
 
-function createPlatformEvent(allGames) {
-    const selectPlatform = document.getElementById("platform-select")
+function filterPlatform(allGames) {
     
-    selectPlatform.addEventListener("change", function (eventPlatform) {
-        filterPlatform(eventPlatform, allGames)
-    })
-}
-
-createPlatformEvent(allGames)
- 
-//FILTERING - PLATFORM
-
-function filterPlatform(eventPlatform, allGames) {
-    
-    const platformSelect = eventPlatform.target.value
+    const platformSelect = document.getElementById("platform-select").value;
     // console.log('platformSelect :>> ', platformSelect);
         let filteredGamesbyPlatform = []
     if (platformSelect.toLowerCase() === "all") {
@@ -211,17 +197,19 @@ function filterPlatform(eventPlatform, allGames) {
 
 }
 
-//RUN CARD CREATION
-createCards(allGames)
+// SEARCH BOX FUNCTION
 
-
-//SEARCH BOX FUNCTION (doesn't work!)
-  
-//events
-
-    const runButton = document.getElementById("run-button");
-    runButton.addEventListener('click', function () {
-    const searchInput = document.getElementById("type-title");
-    const searchQuery = searchInput.value;
-    console.log('searchQuery :>> ', searchQuery);
-})
+function searchBar (searchQuery, allGames) {
+    const searchedGame = []
+    for (let i = 0; i < allGames.length; i++) {
+                 if (searchQuery.toLowerCase() === allGames[i].title.toLowerCase()) {
+                     searchedGame.push(allGames[i]);
+                     const noGamesFound = document.getElementById("no-games-found");
+                     noGamesFound.style.display = "none";
+                 } else {
+                     const noGamesFound = document.getElementById("no-games-found");
+                     noGamesFound.innerText = "No games found! Try another search.";
+                 }
+    } 
+    createCards(searchedGame)
+}
