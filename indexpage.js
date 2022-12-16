@@ -3,6 +3,8 @@ function showMoreEvent() {
     const myShowButton = document.getElementById("show-button");
     myShowButton.addEventListener("click", showButton);
 }
+showMoreEvent()
+
 // SHOW MORE FUNCTION
 function showButton() {
     let moreText = document.getElementById("more-text");
@@ -15,4 +17,3 @@ function showButton() {
         showMoreLessButton.innerHTML = "Show More";
     }      
 }
-showMoreEvent()

@@ -1,10 +1,10 @@
 body {
-background-color: #e8eaeb !important;
-min-width:100% !important;
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: "Sarpanch" !important;
+    background-color: #e8eaeb !important;
+    min-width:100% !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Sarpanch" !important;
 }
 
 /* nav menu */
@@ -179,9 +179,14 @@ footer a {
     text-align: center;
 }
 
+  .card-title-5 {
+    transition: all 2s ease;
+    display: none;
+  }
+
 /* card styling */
 .card:nth-child(odd) {
-background: #e8d3c9 !important;
+    background: #e8d3c9 !important;
 }
 
 .card:nth-child(even) {
@@ -190,11 +195,12 @@ background: #e8d3c9 !important;
 
 .card {
     padding: 0rem !important;
-    overflow: hidden !important;
+    overflow:hidden !important;
 }
 
 .card-title {
     font-weight:bolder !important;
+    text-decoration:underline;
 }
 
 #card-deck {
@@ -225,15 +231,18 @@ filter:sepia(70%);
     height: 2.4em !important;
 }
 
+.reset-desc-buttons {
+    display:inline;
+}
+
 #dropdowns-and-search-box {
     column-gap: 0.5rem;
     border-radius: 25px;
 }
 
 #reset-button {
-    margin-top:-2em !important;
+    margin-right: 2em;
 }
-
 
 #dropdown-texts {
     margin-bottom: -2em !important;
@@ -249,7 +258,7 @@ filter:sepia(70%);
 
 @media (max-width: 50em) {
     #platform-text {
-            margin-left: 1rem !important;
+        margin-left: 1rem !important;
     }
 }
 

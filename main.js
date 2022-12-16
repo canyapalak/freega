@@ -26,17 +26,18 @@ function addEvents(allGames) {
     // search box
     const runButton = document.getElementById("run-button");
     runButton.addEventListener('click', function () {
-    const searchInput = document.getElementById("type-title");
-    const searchQuery = searchInput.value;
-    searchBar(searchQuery, allGames);
-    console.log('searchQuery :>> ', searchQuery);
+        const searchInput = document.getElementById("type-title");
+        const searchQuery = searchInput.value;
+        searchBar(searchQuery, allGames);
     })
     // reset button
     document.getElementById("reset-button").addEventListener("click", resetCards);
+    
+    // show descriptions toggle
+    document.getElementById("toggle").addEventListener("click", (e)=>showDescriptions());
 }
 createCards(allGames)
 addEvents(allGames)
-
 
 // CARD CREATION
 function createCards(allGames) {
@@ -88,13 +89,18 @@ for (let i = 0; i < allGames.length; i++) {
     platform.innerText = "Platform to Play: ";
     platform.classList.add("card-title-4");
 
+    const description = document.createElement("p")
+    description.id = "short-descriptions";
+    description.classList.add("card-title-5");
+    description.innerText = allGames[i].short_description;
+
     if (allGames[i].platform === "PC (Windows)") {
     let imgWindows = document.createElement("img");
         imgWindows.src = "images/windows.png";
         platform.appendChild(imgWindows);
     }
 
-        if (allGames[i].platform === "Web Browser") {
+    if (allGames[i].platform === "Web Browser") {
     let imgBrowser = document.createElement("img");
         imgBrowser.src = "images/browser.png";
         platform.appendChild(imgBrowser);
@@ -126,6 +132,7 @@ for (let i = 0; i < allGames.length; i++) {
     cardBody.appendChild(developer);
     cardBody.appendChild(releaseDate);
     cardBody.appendChild(platform);
+    cardBody.appendChild(description);
     cardFooter.appendChild(link);
     card.appendChild(cardBody);
     card.appendChild(cardFooter);
@@ -136,7 +143,6 @@ for (let i = 0; i < allGames.length; i++) {
 // RESET FILTERS AND SHOW ALL CARDS
 
 function resetCards() {
-    createCards(allGames);
     const selectGenre1 = document.getElementById("genre-select")
     selectGenre1.selectedIndex = 0;
     const selectPlatform1 = document.getElementById("platform-select")
@@ -145,17 +151,21 @@ function resetCards() {
     searchInput1.value = ""
     const noGamesFound = document.getElementById("no-games-found")
     noGamesFound.innerText = ""
+    createCards(allGames);
+    showDescriptions();
 }
 // FILTERING - GENRE
 function filterGenre(allGames) {
     
     const genreSelect = document.getElementById("genre-select").value
+    const toggleButton = document.getElementById("toggle");
     // console.log('genreSelect :>> ', genreSelect);
     let filteredGamesbyGenre = []
     if (genreSelect.toLowerCase() === "all") {
        filteredGamesbyGenre = allGames
     } else {
         if (genreSelect.toLowerCase() !== "all") {
+            toggleButton.innerText = "Show Descriptions";
              for (let i = 0; i < allGames.length; i++){
                  if (allGames[i].genre.toLowerCase() === genreSelect.toLowerCase()) {
                      filteredGamesbyGenre.push(allGames[i])
@@ -179,12 +189,14 @@ function filterGenre(allGames) {
 function filterPlatform(allGames) {
     
     const platformSelect = document.getElementById("platform-select").value;
+    const toggleButton = document.getElementById("toggle");
     // console.log('platformSelect :>> ', platformSelect);
         let filteredGamesbyPlatform = []
     if (platformSelect.toLowerCase() === "all") {
        filteredGamesbyPlatform = allGames
     } else {
         if (platformSelect.toLowerCase() !== "all") {
+            toggleButton.innerText = "Show Descriptions";
              for (let i = 0; i < allGames.length; i++){
                  if (allGames[i].platform.toLowerCase() === platformSelect.toLowerCase()) {
                      filteredGamesbyPlatform.push(allGames[i])
@@ -201,8 +213,10 @@ function filterPlatform(allGames) {
 
 function searchBar (searchQuery, allGames) {
     const searchedGame = []
+    const toggleButton = document.getElementById("toggle");
     for (let i = 0; i < allGames.length; i++) {
-                 if (searchQuery.toLowerCase() === allGames[i].title.toLowerCase()) {
+        if (searchQuery.toLowerCase() === allGames[i].title.toLowerCase()) {
+                     toggleButton.innerText = "Show Descriptions";
                      searchedGame.push(allGames[i]);
                      const noGamesFound = document.getElementById("no-games-found");
                      noGamesFound.style.display = "none";
@@ -212,4 +226,22 @@ function searchBar (searchQuery, allGames) {
                  }
     } 
     createCards(searchedGame)
+}
+
+// SHOW DESCRIPTIONS
+
+function showDescriptions() {
+  
+    let descriptions = document.getElementsByClassName("card-title-5");
+    const toggleButton = document.getElementById("toggle");
+    
+    for (let i = 0; i < descriptions.length; i++) {
+        if (descriptions[i].style.display !== "inline") {
+        descriptions[i].style.display = "inline";
+        toggleButton.innerText = "Hide Descriptions";
+    } else {
+        descriptions[i].style.display = "none";
+        toggleButton.innerText = "Show Descriptions";
+        }
+    }
 }
