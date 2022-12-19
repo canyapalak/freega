@@ -19,7 +19,7 @@
             <li><a href="games.html">GAMES</a></li>
             <li><a href="about.html">ABOUT</a></li>
         </ul>
-        </nav>
+        </div>
 
 <!--search page text-->
         <div class="games-text">
@@ -38,7 +38,7 @@
     
     <!--filter by genre-->
         <div class="dropdown-genre">
-            <select class="form-select" id="genre-select" aria-labelledby="dropdownMenuButton">
+            <select class="form-select" id="genre-select">
                     <option value="All">All</option>
                     <option value="Shooter">Shooter</option>
                     <option value="MMOARPG">MMOARPG</option>
@@ -59,7 +59,7 @@
     
     <!--filter by platform-->
         <div class="dropdown-platform">
-            <select class="form-select" id="platform-select" aria-labelledby="dropdownMenuButton">
+            <select class="form-select" id="platform-select">
                     <option value="All">All</option>
                     <option value="PC (Windows)">PC (Windows)</option>
                     <option value="Web Browser">Web Browser</option>
@@ -89,14 +89,9 @@
     </div>
 
 <!--cards container-->
-<p id = "no-games-found"></p>
+<span id = "no-games-found"></span>
 <div class= "container" id="card-deck"></div>
 
-<!--footer-->
-<footer>
-    <p><img src="images/clouds.png" alt="Logo"></p>
-    <p>Freega! ® 2022 - by <a href="https://github.com/canyapalak" target="_blank">Can Yapalak</a></p>
-</footer>
 <!--scripts-->
         <script src="all-games.js"></script>
         <script src="main.js"></script>
@@ -110,5 +105,4 @@
          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>
-
 </html>
