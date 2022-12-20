@@ -13,22 +13,22 @@
 function addEvents(allGames) {
 
     // genre dropdown
-    const selectGenre = document.getElementById("genre-select")
+    const selectGenre = document.getElementById("genre-select");
     selectGenre.addEventListener("change", function () {
-        combinedFilters(allGames)
-    })
+        combinedFilters(allGames);
+    });
     // platform dropdown
-    const selectPlatform = document.getElementById("platform-select")
+    const selectPlatform = document.getElementById("platform-select");
     selectPlatform.addEventListener("change", function () {
-        combinedFilters(allGames)
-    })
+        combinedFilters(allGames);
+    });
     // search box
     const runButton = document.getElementById("run-button");
     runButton.addEventListener('click', function () {
         const searchInput = document.getElementById("type-title");
         const searchQuery = searchInput.value;
         searchBar(searchQuery, allGames);
-    })
+    });
     // reset button
     document.getElementById("reset-button").addEventListener("click", resetCards);
     
@@ -37,13 +37,13 @@ function addEvents(allGames) {
     document.getElementById("descriptionsCheckbox").addEventListener("change", (e)=>showDescriptions());
     
 }
-createCards(allGames)
-addEvents(allGames)
+createCards(allGames);
+addEvents(allGames);
 
 // CARD CREATION
 function createCards(allGames) {
     let cardContainer = document.getElementById("card-deck");
-    cardContainer.innerHTML = ""
+    cardContainer.innerHTML = "";
 for (let i = 0; i < allGames.length; i++) {
 
     // card component
@@ -65,13 +65,13 @@ for (let i = 0; i < allGames.length; i++) {
     title.innerText = allGames[i].title;
     title.setAttribute("class", "card-title");
 
-    const genre = document.createElement("p")
+    const genre = document.createElement("p");
     genre.innerText = "Genre: " + allGames[i].genre;
     genre.classList.add("card-text");
 
-    const developer = document.createElement("p")
+    const developer = document.createElement("p");
     developer.innerText = "Developer: " + allGames[i].developer;
-    developer.classList.add("card-title-2")
+    developer.classList.add("card-title-2");
 
 
     const newDate = new Date(allGames[i].release_date).toLocaleString("en-GB", {
@@ -89,7 +89,7 @@ for (let i = 0; i < allGames.length; i++) {
     platform.innerText = "Platform to Play: ";
     platform.classList.add("card-title-4");
 
-    const description = document.createElement("p")
+    const description = document.createElement("p");
     description.id = "short-descriptions";
     description.classList.add("card-title-5");
     description.innerText = allGames[i].short_description;
@@ -117,7 +117,7 @@ for (let i = 0; i < allGames.length; i++) {
 
     const cardFooter = document.createElement("div");
     cardFooter.classList.add("card-footer");
-    cardFooter.setAttribute("class", "border-top border-dark")
+    cardFooter.setAttribute("class", "border-top border-dark");
 
     const link = document.createElement("a");
     link.setAttribute("class", "btn btn-dark rounded-0");
@@ -143,15 +143,15 @@ for (let i = 0; i < allGames.length; i++) {
 // RESET FILTERS AND SHOW ALL CARDS
 
 function resetCards() {
-    const selectGenre1 = document.getElementById("genre-select")
+    const selectGenre1 = document.getElementById("genre-select");
     selectGenre1.selectedIndex = 0;
-    const selectPlatform1 = document.getElementById("platform-select")
+    const selectPlatform1 = document.getElementById("platform-select");
     selectPlatform1.selectedIndex = 0;
-    const searchInput1 = document.getElementById("type-title")
-    searchInput1.value = ""
-    const noGamesFound = document.getElementById("no-games-found")
-    noGamesFound.innerText = ""
-    const checkbox = document.getElementById("descriptionsCheckbox")
+    const searchInput1 = document.getElementById("type-title");
+    searchInput1.value = "";
+    const noGamesFound = document.getElementById("no-games-found");
+    noGamesFound.innerText = "";
+    const checkbox = document.getElementById("descriptionsCheckbox");
     checkbox.checked = false;
     createCards(allGames);
 }
@@ -159,22 +159,22 @@ function resetCards() {
 // FILTERING - GENRE
 function filterGenre(allGames) {
     
-    const genreSelect = document.getElementById("genre-select").value
+    const genreSelect = document.getElementById("genre-select").value;
     const checkbox = document.getElementById("descriptionsCheckbox");
-    let filteredGamesbyGenre = []
+    let filteredGamesbyGenre = [];
     if (genreSelect.toLowerCase() === "all") {
-       filteredGamesbyGenre = allGames
+        filteredGamesbyGenre = allGames;
     } else {
         if (genreSelect.toLowerCase() !== "all") {
             checkbox.check = false;
              for (let i = 0; i < allGames.length; i++){
                  if (allGames[i].genre.toLowerCase() === genreSelect.toLowerCase()) {
-                     filteredGamesbyGenre.push(allGames[i])
+                     filteredGamesbyGenre.push(allGames[i]);
                 }
             }
         }
     }
-    createCards(filteredGamesbyGenre)
+    createCards(filteredGamesbyGenre);
 
     // FILTERING WITH MODERN JS
 
@@ -191,36 +191,36 @@ function filterPlatform(allGames) {
     
     const platformSelect = document.getElementById("platform-select").value;
     const checkbox = document.getElementById("descriptionsCheckbox");
-        let filteredGamesbyPlatform = []
+    let filteredGamesbyPlatform = [];
     if (platformSelect.toLowerCase() === "all") {
-       filteredGamesbyPlatform = allGames
+        filteredGamesbyPlatform = allGames;
     } else {
         if (platformSelect.toLowerCase() !== "all") {
             checkbox.checked = false;
-            return allGames.platform.toLowerCase() === platformSelect.toLowerCase()
+            return allGames.platform.toLowerCase() === platformSelect.toLowerCase();
             }
              for (let i = 0; i < allGames.length; i++){
                  if (allGames[i].platform.toLowerCase() === platformSelect.toLowerCase()) {
-                     filteredGamesbyPlatform.push(allGames[i])
+                     filteredGamesbyPlatform.push(allGames[i]);
                 }
             }
     }
-    createCards(filteredGamesbyPlatform)
+    createCards(filteredGamesbyPlatform);
 }
 
 // COMBINING THE FILTERS
 
 function combinedFilters(allGames) {
-    const genreSelect = document.getElementById("genre-select").value
+    const genreSelect = document.getElementById("genre-select").value;
     const platformSelect = document.getElementById("platform-select").value;
     const checkbox = document.getElementById("descriptionsCheckbox");
 
     const filteredGames = allGames.filter(allGame => {
-        return (allGame.platform.toLowerCase() === platformSelect.toLowerCase() || 
-        platformSelect.toLowerCase() === "all") && 
-        (allGame.genre.toLowerCase() === genreSelect.toLowerCase() ||
-            genreSelect.toLowerCase() === "all")
-    })
+        return (allGame.platform.toLowerCase() === platformSelect.toLowerCase() ||
+            platformSelect.toLowerCase() === "all") &&
+            (allGame.genre.toLowerCase() === genreSelect.toLowerCase() ||
+                genreSelect.toLowerCase() === "all");
+    });
     
     if (filteredGames == "") {
         const noGamesFound = document.getElementById("no-games-found");
@@ -228,19 +228,19 @@ function combinedFilters(allGames) {
             "\"! Try another genre or platform.";
         checkbox.checked = false;
     } else {
-        const noGamesFound = document.getElementById("no-games-found")
-        noGamesFound.innerText = ""
+        const noGamesFound = document.getElementById("no-games-found");
+        noGamesFound.innerText = "";
         checkbox.checked = false;
     }
 
-    createCards(filteredGames)
+    createCards(filteredGames);
 
 }
 
 // SEARCH BOX FUNCTION
 
 function searchBar (searchQuery, allGames) {
-    const searchedGame = []
+    const searchedGame = [];
     const checkbox = document.getElementById("descriptionsCheckbox");
     const noGamesFound = document.getElementById("no-games-found");
     for (let i = 0; i < allGames.length; i++) {
@@ -257,7 +257,7 @@ function searchBar (searchQuery, allGames) {
 
         }
     } 
-    createCards(searchedGame)
+    createCards(searchedGame);
 }
 
 // SHOW DESCRIPTIONS

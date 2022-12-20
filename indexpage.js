@@ -3,7 +3,7 @@ function showMoreEvent() {
     const myShowButton = document.getElementById("show-button");
     myShowButton.addEventListener("click", showButton);
 }
-showMoreEvent()
+showMoreEvent();
 
 // SHOW MORE FUNCTION
 function showButton() {

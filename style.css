@@ -108,6 +108,10 @@ footer a {
     text-decoration: none;
 }
 
+footer a:hover {
+    color: #FE8587;
+}
+
 /* logo animation */
 .games-text img:hover {
     animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
@@ -224,7 +228,7 @@ footer a {
 }
 
 .card-img-top {
-filter:sepia(50%);
+filter:sepia(65%);
 }
 
 /* search panel */
