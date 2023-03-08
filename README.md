@@ -2,7 +2,7 @@
 
 <h2>An API project for video games to play free, built with pure Javascript</h2>
 
-<h2>Functinality and purpose of the application</h2>
+<h2>Functionality and purpose of the application</h2>
 <p>
 This is a website, which offers a comprehensive list of games available for online play. Freega is built using the freetogame.com API, which provides detailed information such as the publisher, thumbnail, genre, description, release year, and platform for each game.
 
